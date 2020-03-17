@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.tutorial.service.MyStudentLocalService" class="com.liferay.tutorial.service.impl.MyStudentLocalServiceImpl" />
+	<bean id="com.liferay.tutorial.service.MyStudentService" class="com.liferay.tutorial.service.impl.MyStudentServiceImpl" />
+	<bean id="com.liferay.tutorial.service.persistence.MyStudentPersistence" class="com.liferay.tutorial.service.persistence.MyStudentPersistenceImpl" parent="basePersistence" />
+</beans>

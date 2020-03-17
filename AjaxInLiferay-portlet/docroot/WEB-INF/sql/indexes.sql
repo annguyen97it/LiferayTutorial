@@ -1,0 +1,1 @@
+create index IX_FC7D29D6 on MyStudent (Code);
