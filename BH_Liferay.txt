@@ -1,0 +1,92 @@
+===Các bài phải học: 
+Liferay 6.2: Thao tác trên nhiều dòng trong search...
+Liferay 6.2: Thao tác trên từng dòng của search-co...
+Liferay 6.2: Xác thực (Validate) dữ liệu: http://chingovan.blogspot.com/2016/04/liferay-xac-thuc-validate-du-lieu.html 
+
+1. File.jsp mở file edit.jsp thao tác này được gọi là render(view=> view, controller=> view : Trả data về view)
+2. Chuyển dữ liệu từ file edit.jsp xuống controller ta gọi là action (view=> controller)
+3. <portlet:defineObjects />: Định nghĩa các biến toàn cục
+4.  init.jsp sẽ được dùng để chứa các thư viện mặc định,  
+ init-ext.jsp sẽ chứa các thư viện cho lập trình viên tự thêm vào
+5. Thao tac csdl dung: Servvice Builder
+
+-------------------- 16/3: So sánh giữa Liferay MVC va Spring MVC -------------------
+1. Framework 
+- Spring MVC là một kiến trúc đầy đủ để xây dựng các ứng dụng web mạnh mẽ, linh hoạt và loosely coupled (các thành phần được kết nối với nhau nhưng giảm đến mức thập nhất sự phụ thuộc lẫn nhau).
+- Liferay MVC là một framwork nhẹ chỉ để xây dựng các portlet trong Liferay.
+
+2. Các lớp Portlet
+- DepatcherPortlet làm việc như một lớp portlet class trong Spring MVC. DepatcherPortlet là bộ điều khiển chính để phân phát các yêu cầu đến xử lý riêng biệt.
+- MVCPortlet (và các lớp con) là bộ điều khiển của Liferay MVC.
+
+3. Phương thức Render
+- Spring MVC cung cấp các nhiều phương thức render. Sẽ có một phương thức render mặc định được gọi trong các trường hợp không chỉ định một render cụ thể nào. Để gọi các phương thức render khác, bạn cần truyền khóa ánh xạ phương thức render với một tham số action tại lúc tạo render URL.
+- Liferay MVC chỉ có một phương thức render. Tuy nhiên, Liferay cung cấp cơ chế để sinh ra các file jsp khi chạy. Render URL được sử dụng để gọi phương thức render.
+
+4. Phương thức Action (dùng khi thêm, sửa, xóa)
+- Cả Liferay MVC và Spring MVC đều hỗ trợ nhiều phương thức action.
+
+5. Phương thức Resource (dùng trong trường hợp upload file, sinh json data):
+- Spring MVC, bạn có thể tạo "nhiều" phương thức resource.
+- Liferay MVC, bạn chỉ được định nghĩa "một" phương thức resource.
+
+6. Tính di động:
+- Spring MVC không phụ thuộc vào bất kỳ cổng thông tin nào. Bạn có thể triển khai Spring MVC Portlet trên một công thông tin bất kỳ.
+- Liferay MVC chỉ tạo các porlet cho công thông tin Liferay. Tất cả các lớp cơ bản chỉ được sử dụng prong Liferay portlet. Vì lý do này, bạn không thể triển khai Liferay MVC Portlet trên các cổng thông tin khác.
+
+7. Hỗ trợ bởi Liferay IDE
+- Hiện tại, Liferay IDE không hỗ trợ tạo ra Spring MVC Portlet. Nhưng đừng lo, bạn có thể tạo Spring MVC Portlet trong Liferay IDE theo hướng dẫn tại đây.
+- Liferay MVC là portlet sẵn có được cung cấp bởi Liferay. Nó được hỗ trợ bởi Liferay IDE.
+
+8. View
+- Với Spring MVC Portlet, bạn có thể cắm thêm nhiều công nghệ như JSP, Freemarker, Velocity, PDF, ... Spring cung cấp các resolver để sinh ra các định dạng đầu ra khác nhau và chúng được gọi là các công nghệ view. Đường dẫn đến các view được định nghĩa trong các file context.
+- Liferay MVC cung cấp công nghệ JSP cho phép hiển thị nội dung một cahcs rất đơn giản. Đường dẫn đến các view được ánh xạ trong file portlet.xml
+
+9. Tích hợp
+- Spring MVC Portlet framework kế thừa tất cả các đặc điểm của Spring MVC (web). Bởi vậy, nó mặc định cung cấp khả năng tích hợp
+- Liferay MVC không có khả năng tích hợp này.
+10. Sử dụng bộ nhớ
+- Liferay MVC kế thừa các lớp được cung cấp bởi Liferay và không có bất kỳ sự phụ thuộc nào khác. Nó tiêu thụ ít bộ nhớ hơn so với Spring MVC Portlet.
+
+11. Sử dụng Liferay MVC hay Spring MVC và khi nào thì sử dụng?
+- Liferay MVC là một framework nhẹ. Nó cung cấp bộ khung cơ bản để tạo ra các portlet trong Liferay. Nó có thể được sử dụng khi bạn muốn portlet của mình thực hiện những công việc đơn giản mà chỉ đòi hỏi một hoặc hai phương thức action và với một lượng nhỏ các phương thức render.
+- Ngược lại, Spring MVC portlet là một MVC Framework với đầy đủ các đặc điểm. Nó cung cấp rất nhiều chức năng được kế thừa tử Spring Web MVC
+
+Tổng kết:
+- Liferay MVC và Spring MVC là các portlet framework được sử dụng rộng rãi để tạo ra các portlet trong Liferay.
+- Liferay MVC là một framework nhẹ mà có thể tạo ra các portlet nếu nó chứa ít các phương thức render/resource phức tạp và một vài phương thức action => sử dụng cho các portlet đơn giản.
+- Spring MVC là một framework đầy đủ. Nó cung cấp rất nhiều chức năng => Sử dụng cho các ứng dụng phức tạp và cần tích hợp.
+
+=============================== Hook và Taglib ================
+- Có 3 thành phần khi muốn tạo một thẻ-lib mới:
++ Một tập tin *.tld : khai báo thẻ và  thuộc tính
++ Các lớp Java xử lý: 
++ Tập tin JSP
+
+===============================SessionClicks=====================
+- Chỉ dùng JSP code: cần phải tải lại mỗi khi chúng ta nhấn vào nút Show hoặc Hide
+- JSP code + javascript: khi nhấn vào nút Show hoặc Hide thì không tải lại trang mà vẫn có kết quả
+
+=========== Windows PopUp ==============
+- mở một cửa sổ popup mới khi: useDialog="true"
+
+================= Xác thực dữ liệu (Form Validator) ====================
+
+- Thẻ : <aui:validator name="" errorMessage="" >
++ errorMessage: không bắt buộc, nhập giá trị cho thuộc tính này để hiển thị thông báo riêng bạn, ngược lại thông báo mặc định khi xác thực không thành công.
++ name: 
+> acceptFiles: Sử dụng cho kiểu tệp tin
+> alpha: Chỉ chấp nhận chữ a-zA-Z
+> alphanum: Chấp nhận ký tự a-zA-Z và số 0-9
+> date: kiểu ngày tháng, chấp nhận: 0-9 và /
+> digits: Cho phép nhập số nguyên
+> number: Cho phép nhập số nguyên,thực.
+> email: nhập email
+> equalTo: nhập giống với nội dung một trường khác ( Xác nhận mật khẩu)
+> iri: Định danh tài nguyên quốc tế, Định danh URL
+> max, min: giá trị lớn nhất, nhỏ nhất
+> maxLength, minLength: Độ dài tối đa, tối thiểu của một chuỗi
+> required: bắt buộc phải nhập dữ liệu
+> url: nhập đúng địa chỉ URL
+
+
