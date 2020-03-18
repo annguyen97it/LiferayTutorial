@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.liferay.tutorial">
+	<author>annv</author>
+	<namespace>database</namespace>
+
+	<entity name="Validator_Student" local-service="true" remote-service="true" table="Validator_Student">
+
+		<!-- PK fields -->
+
+		<column name="studentId" type="long" primary="true" id-type="increment"/>
+       
+        <column name="code" type="String"></column>
+        <column name="fullname" type="String"></column>
+        <column name="gender" type="boolean"></column>
+        <column name="birthday" type="Date"></column>
+        <column name="email" type="String"></column>
+        <column name="address" type="String"></column>
+        <column name="blog" type="String"></column>
+        <column name="mark" type="double"></column>
+	</entity>
+</service-builder>
